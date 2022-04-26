@@ -96,8 +96,7 @@ if config.TRAINING:
 else:
     # If not training, we try to load the model from config.MODEL_PATH instead of saving the model to config.MODEL_PATH
     model = pose_estimation.get_model()
-    test = torch.load(config.MODEL_PATH)
-    model.load_state_dict(test)
+    model.load_state_dict(torch.load(config.MODEL_PATH))
 
 # Move model to GPU if needed and prepare it for evaluation
 model.to(config.DEVICE)
