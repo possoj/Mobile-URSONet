@@ -59,10 +59,6 @@ class Config:
         self.GAMMA = 0.1
         self.PATIENCE = 3  # When OnPlateau
 
-        # POS soft classification
-        # self.N_POS_BINS_PER_DIM = 32
-        # self.POS_SMOOTH_FACTOR = 3
-
         # Image augmentation (OpenCV)
         self.ROT_IMAGE_AUG = True
         self.ROT_PROBABILITY = 0.5
