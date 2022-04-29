@@ -10,10 +10,10 @@ class Config:
     def __init__(self, device):
 
         self.HPARAM_TUNING = False  # Hyperparameter tuning with optuna. If true training and eval should be false
-        self.TRAINING = False
-        self.EVALUATION = True
+        self.TRAINING = True
+        self.EVALUATION = True  # eval on validation and real sets
         self.EVAL_SUBMIT = True  # For submission on ESA website
-        self.EVAL_DISTANCE = True
+        self.EVAL_DISTANCE = True  # See the impact of the distance with the target spacecraft on the score
 
         # Seed
         self.SEED = 1001
@@ -23,41 +23,44 @@ class Config:
         self.N_TRIALS = 20
 
         # Training parameters
-        self.N_EPOCHS = 1
+        self.N_EPOCHS = 50
 
         # Data
-        self.BATCH_SIZE = 8
+        self.BATCH_SIZE = 32
         self.DATASET = 'SPEED'
         self.DATASET_PATH = '../../datasets/speed'
         self.IMG_SIZE = (384, 240)  # or (1920, 1200), (768, 480), (480, 300), etc...
 
         # Model used
-        self.MODEL_NAME = 'Pytorch-Mobile-URSONet'  # 'Pytorch-Mobile-URSONet' 'My-Mobile-URSONet'
-        self.MODEL_PATH = "../models/paper1_8_bins"
-        self.PRETRAINED = True  # Init parameters of the backbone pretrained on ImageNet (from Pytorch repo)
+        self.MODEL_NAME = 'Pytorch-Mobile-URSONet'  # 'Pytorch-Mobile-URSONet' or 'My-Mobile-URSONet'
+        self.MODEL_PATH = "../models/12bins_model.pt"
+        self.PRETRAINED = True  # Init parameters with backbone pretrained on ImageNet (from Pytorch repo)
+
+        # Dropout in the orientation branch
+        self.DROPOUT_RATE = 0.2
 
         # ORI soft classification parameters
-        self.N_ORI_BINS_PER_DIM = 8
+        self.N_ORI_BINS_PER_DIM = 12
         self.ORI_SMOOTH_FACTOR = 3
 
         # Loss
-        self.ORI_TYPE = 'Classification'  # Or 'Regression'
-        self.ORI_NORM_DISTANCE = True  # Regression only
-        self.POS_TYPE = 'Regression'
+        self.ORI_TYPE = 'Classification'  # 'Classification' or 'Regression'
+        self.ORI_NORM_DISTANCE = True  # Used only if ORI_TYPE == Regression
+        self.POS_TYPE = 'Regression'  # Only regression implemented
         self.POS_NORM_DISTANCE = True
         self.BETA = 1  # Loss = BETA * ORI_LOSS + POS_LOSS
 
         # Optimizer
-        self.OPTIMIZER = 'SGD'  # Or 'Adam'
+        self.OPTIMIZER = 'SGD'  # 'SGD', 'Adam', etc...
         self.LEARNING_RATE = 0.01
         self.MOMENTUM = 0.9
         self.WEIGHT_DECAY = 0
 
         # Scheduler
-        self.SCHEDULER = 'MultiStepLR'  # 'OnPlateau'
+        self.SCHEDULER = 'MultiStepLR'  # 'MultiStepLR', 'OnPlateau'
         self.MILESTONES = [30, 45]  # When MultiStepLR, multiply learning rate by GAMMA at every milestone
         self.GAMMA = 0.1
-        self.PATIENCE = 3  # When OnPlateau
+        self.PATIENCE = 3  # When SCHEDULER == OnPlateau
 
         # Image augmentation (OpenCV)
         self.ROT_IMAGE_AUG = True
@@ -74,9 +77,6 @@ class Config:
         self.CONTRAST = 0.2
         self.SATURATION = 0.2
         self.HUE = 0.2
-
-        # Model parameters
-        self.DROPOUT_RATE = 0.2
 
         # DO NOT MODIFY THE FOLLOWING
         self.DEVICE = device  # CPU or CUDA
