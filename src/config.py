@@ -15,9 +15,9 @@ class Config:
         self.EVAL_SUBMIT = True  # For submission on ESA website
         self.EVAL_DISTANCE = True  # See the impact of the distance with the target spacecraft on the score
 
-        # Seed
+        # Seed (for reproducibility)
         self.SEED = 1001
-        # Automatic Mixed Precision
+        # Automatic Mixed Precision (FP16)
         self.USE_AMP = False
         # Number of trials for hyperparameter tuning with Optuna
         self.N_TRIALS = 20
@@ -33,25 +33,28 @@ class Config:
 
         # Model used
         self.MODEL_NAME = 'Pytorch-Mobile-URSONet'  # 'Pytorch-Mobile-URSONet' or 'My-Mobile-URSONet'
+        # If TRAINING is True save trained model to MODEL_PATH else load model from MODEL_PATH
         self.MODEL_PATH = "../models/12bins_model.pt"
         self.PRETRAINED = True  # Init parameters with backbone pretrained on ImageNet (from Pytorch repo)
 
         # Dropout in the orientation branch
         self.DROPOUT_RATE = 0.2
 
+        # Orientation and position branches
+        self.ORI_TYPE = 'Classification'  # 'Classification' or 'Regression'
+        self.POS_TYPE = 'Regression'  # Only regression implemented
+
         # ORI soft classification parameters
         self.N_ORI_BINS_PER_DIM = 12
         self.ORI_SMOOTH_FACTOR = 3
 
         # Loss
-        self.ORI_TYPE = 'Classification'  # 'Classification' or 'Regression'
         self.ORI_NORM_DISTANCE = True  # Used only if ORI_TYPE == Regression
-        self.POS_TYPE = 'Regression'  # Only regression implemented
         self.POS_NORM_DISTANCE = True
         self.BETA = 1  # Loss = BETA * ORI_LOSS + POS_LOSS
 
         # Optimizer
-        self.OPTIMIZER = 'SGD'  # 'SGD', 'Adam', etc...
+        self.OPTIMIZER = 'SGD'  # 'SGD', 'Adam'
         self.LEARNING_RATE = 0.01
         self.MOMENTUM = 0.9
         self.WEIGHT_DECAY = 0

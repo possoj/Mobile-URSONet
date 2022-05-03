@@ -16,6 +16,8 @@ import random
 
 
 def copy_speed_dataset_resize(old_path, new_path, new_size=(224, 224), split='train'):
+    """copy and resize Speed images to a new directory. The new (empty) folders must be created before calling
+    this function"""
 
     if split not in {'train', 'test', 'real_test'}:
         raise ValueError('Invalid split, has to be either \'train\', \'test\' or \'real_test\'')
