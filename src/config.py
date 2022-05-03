@@ -11,7 +11,7 @@ class Config:
 
         self.HPARAM_TUNING = False  # Hyperparameter tuning with optuna. If true training and eval should be false
         self.TRAINING = True
-        self.EVALUATION = True  # eval on validation and real sets
+        self.EVALUATION = True  # eval on validation and real datasets
         self.EVAL_SUBMIT = True  # For submission on ESA website
         self.EVAL_DISTANCE = True  # See the impact of the distance with the target spacecraft on the score
 
