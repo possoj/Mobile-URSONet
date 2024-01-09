@@ -55,7 +55,7 @@ conda install --file requirements.txt -c pytorch -c conda-forge
 
 ## Training and evaluation
 The training and evaluation of Mobile-URSONet is controlled by the config.py file. To execute the code, just modify the 
-`config.py` file and run: `python main.py`
+`config.py` file and run from the `src` directory: `python main.py`
 
 Example: to reproduce the results of our 16 bins model, change the default value of `config.py to the following:
 
