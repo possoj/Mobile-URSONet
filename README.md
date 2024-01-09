@@ -4,16 +4,19 @@ that achieved the 3rd place on the [European Space Agency's Pose Estimation Chal
 We propose Mobile-URSONet: a spacecraft pose estimation convolutional neural network with 178 times fewer parameters 
 while degrading accuracy by no more than four times compared to URSONet. 
 
-For more details check our [Arxiv preprint](https://arxiv.org/abs/2205.02065).This work is accepted at 
-IEEE ISCAS 2022, a peer-reviewed conference and available on [IEEE Xplore](https://TOTO)
+For more details check our [Arxiv preprint](https://arxiv.org/abs/2205.02065). This work was presented at 
+IEEE ISCAS 2022, a peer-reviewed conference and available on [IEEE Xplore](https://ieeexplore.ieee.org/document/9937721)
 
 ```
-@article{posso2022mobileurso,
-    title = {Mobile-URSONet: an Embeddable Neural Network for Onboard Spacecraft Pose Estimation},
-    author = {Posso, Julien and Bois, Guy and Savaria, Yvon},
-    journal = {arXiv preprint arXiv:2205.02065}
-    year = {2022},
-}
+@INPROCEEDINGS{9937721,
+  author={Posso, Julien and Bois, Guy and Savaria, Yvon},
+  booktitle={2022 IEEE International Symposium on Circuits and Systems (ISCAS)}, 
+  title={Mobile-URSONet: an Embeddable Neural Network for Onboard Spacecraft Pose Estimation}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={794-798},
+  doi={10.1109/ISCAS48785.2022.9937721}}
 ```
 
 ## Installation
